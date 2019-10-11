@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import Head from "next/head";
 import Header from "../components/Header";
 import Author from "../components/author";
+import Advert from "../pages/Advert"
+import Footer from "../components/Footer"
 import "../public/pages/index.css"
-import { Row, Col, List, Icon } from "antd";
+import { Row, Col, List, Icon, Breadcrumb } from "antd";
 const Home = () => {
-  const [ mylist , setMylist ] = useState([
+  const [mylist, setMylist] = useState([
     {
       title: "50元加入小密圈 胖哥带你学一年",
       context:
@@ -30,11 +32,18 @@ const Home = () => {
   return (
     <>
       <Head>
-        <title> Home </title>
+        <title> 首页 </title>
       </Head>
       <Header />
       <Row className="comm-main" type="flex" justify="center">
         <Col className="comm-left" xs={24} sm={24} md={16} lg={18} xl={14}>
+          <div>
+            <div className="bread-div">
+                <Breadcrumb>
+                 <Breadcrumb.Item><a href="/">首页</a></Breadcrumb.Item>
+                 <Breadcrumb.Item>视频列表</Breadcrumb.Item>
+                </Breadcrumb>
+            </div>     
           <List
             header={<div>最新日志</div>}
             itemLayout="vertical"
@@ -54,14 +63,17 @@ const Home = () => {
                   </span>
                 </div>
                 <div className="list-context">{item.context}</div>
-              </List.Item> 
+              </List.Item>
             )}
           />
+           </div>
         </Col>
-        <Col className="comm-left" xs={0} sm={0} md={7} lg={5} xl={4}>
-          <Author/>
+        <Col className="comm-right" xs={0} sm={0} md={7} lg={5} xl={4}>
+          <Author />
+          <Advert />
         </Col>
       </Row>
+      <Footer />
     </>
   );
 };
